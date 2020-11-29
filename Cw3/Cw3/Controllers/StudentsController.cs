@@ -12,9 +12,23 @@ namespace Cw3.Controllers
     public class StudentsController : ControllerBase
     {
         [HttpGet]
-        public string GetStudents()
+        public string GetStudents(string orderBy)
         {
-            return "Kowalski, Majewski, Andrzejewski";
+            return $"Kowalski, Majewski, Andrzejewski sortowanie={orderBy}";
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetStudent(int id)
+        {
+            if (id == 1)
+            {
+                return Ok("Kowalski");
+            } else if (id == 2)
+            {
+                return Ok("Malewski");
+            }
+
+            return NotFound("Nie znaleziono studenta");
         }
     }
 }
