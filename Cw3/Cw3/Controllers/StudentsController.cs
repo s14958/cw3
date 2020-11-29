@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cw3.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +30,18 @@ namespace Cw3.Controllers
             }
 
             return NotFound("Nie znaleziono studenta");
+        }
+
+        [HttpPost]
+        public IActionResult CreateStudent(Student student)
+        {
+            // add to database
+            // generate index number
+
+            int indexNumber = new Random().Next(1, 20000);
+            student.IndexNumber = $"s{indexNumber}";
+
+            return Ok(student);
         }
     }
 }
